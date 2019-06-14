@@ -22,7 +22,9 @@ class Frame:
     ### Init ##################################################################
     def __init__(self):
         self.min = Gmin
+        self.min_t = Gmin
         self.sec = Gsec
+        self.sec_t = Gsec
         self.cont = GCouter
         self.status = Gstatus 
         self.frame = tk.Tk()
@@ -114,6 +116,7 @@ class Frame:
             m = int(self.min)
             m = m + 1 if m + 1 <= int(Gmin_max) else m
             self.min = str(m)
+            self.min_t = self.min
             self.refleshtime()
 
     def minminus(self):
@@ -121,6 +124,7 @@ class Frame:
             m = int(self.min)
             m = m - 1 if m - 1 >= 0 else m
             self.min = str(m)
+            self.min_t = self.min
             self.refleshtime()
 
     def secplus(self):
@@ -134,6 +138,8 @@ class Frame:
                 m = m + 1 if m + 1 <= int(Gmin_max) else m
             self.sec = str(s)
             self.min = str(m)
+            self.sec_t = self.sec
+            self.min_t = self.min
             self.refleshtime()
 
     def secminus(self):
@@ -147,6 +153,8 @@ class Frame:
                 m = m - 1 if m - 1 >= 0 else m
             self.sec = str(s)
             self.min = str(m)
+            self.sec_t = self.sec
+            self.min_t = self.min
             self.refleshtime()
 
     def cntplus(self):
@@ -198,8 +206,8 @@ class Frame:
         if t == 0 and self.status == GStatue_Start:
             c = int(self.cont)
             c = c + 1 if c + 1 <= int(Gcnt_max) else c
-            self.min = Gmin
-            self.sec = Gsec
+            self.min = self.min_t
+            self.sec = self.sec_t
             self.cont = str(c)
             self.status = GStatue_Stop
 
